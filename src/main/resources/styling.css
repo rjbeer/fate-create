@@ -1,0 +1,63 @@
+.scroll-pane{
+	-fx-background-color: darkgrey;
+}
+
+.scroll-bar: horizontal, .scroll-bar: vertical{
+	-fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button{
+	-fx-background-color: darkgrey;
+	-fx-border-color: darkgrey;
+}
+
+.scroll-bar > .increment-button > .increment-arrow,
+.scroll-bar > .decrement-button > .decrement-arrow{
+	-fx-background-color: black;
+}
+
+.scroll-bar: horizontal .track,
+.scroll-bar: vertical .track{
+	-fx-background-color: darkgrey;
+	-fx-border-color: transparent;
+	-fx-background-radius: 0em;
+}
+
+.scroll-bar: horizontal .thumb,
+.scroll-bar: vertical .thumb{
+	-fx-background-color: white;
+	-fx-background-radius: 0em;
+}
+
+.scroll-pane > .corner{
+	-fx-background-color: darkgrey;
+}
+
+.text-area .content{
+	-fx-padding: 0;
+}
+
+.text-area .scroll-bar: horizontal{
+	-fx-pref-height: 3;
+}
+
+.text-area .scroll-bar: vertical{
+	-fx-pref-width: 4
+}
+
+.combo-box-base {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+}
+
+.check-box > .box {
+	-fx-padding: 8px;
+	-fx-border-color: grey;
+	-fx-background-color: white;
+	-fx-border-radius: 3px;
+}
+
+.check-box > .box > .mark{
+	-fx-padding: 8px;
+}
