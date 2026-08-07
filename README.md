@@ -23,7 +23,7 @@ At present Fate Create is only supported on Windows though there are plans to ma
 
 First make sure that you have both java 21 or later and Maven installed on your computer. Once that has been accomplished fork the project and download the repository via git.
 
-'''git clone <your_repository_url>'''
+```git clone <your_repository_url>```
 
 From there you can easily begin to work on the files in 'src/main/java/creator/fate/create'
 
@@ -31,6 +31,6 @@ To run the prototype simply navigate to 'proto/target' and double click on the f
 
 To compile the current source code make sure that you run the following command in the root directory for Fate Create
 
-'''mvn clean javafx:run'''
+```mvn clean javafx:run```
 
 This will compile and run the code of the current project.
