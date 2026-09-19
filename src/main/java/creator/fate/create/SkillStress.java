@@ -122,7 +122,7 @@ class SkillStress{
 			if( nu != null && nu.equals("Physique") ){
 				phStress[2].setDisable(false);
 			}else if(old !=null && old.equals("Physique")){
-				if(cdat.checkFor(2, (String)old) || cdat.checkFor(3, (String)old)){
+				if(cdat.checkFor(2, (String)old) || cdat.checkFor(3, (String)old) || cdat.checkFor(4, (String)old)){
 					return;
 				}
 				if(!(cdat.checkFor(0, (String)old)) && !(cdat.checkFor(1, (String)old))){
@@ -132,7 +132,7 @@ class SkillStress{
 			}if( nu != null && nu.equals("Will") ){
 				meStress[2].setDisable(false);
 			}else if(old !=null && old.equals("Will")){
-				if(cdat.checkFor(2, (String)old) || cdat.checkFor(3, (String)old)){
+				if(cdat.checkFor(2, (String)old) || cdat.checkFor(3, (String)old) || cdat.checkFor(4, (String)old)){
 					return;
 				}
 				if(!(cdat.checkFor(0, (String)old)) && !(cdat.checkFor(1, (String)old))){
@@ -144,6 +144,44 @@ class SkillStress{
 	}
 	
 	private void setGoodGreatBehavior(ComboBox cb, int i, int j){
+		cb.getSelectionModel().selectedItemProperty().addListener((obs, old, nu)->{
+			cdat.setSkill(i, j, (String)nu);
+			if(nu != null && nu.equals("Physique")){
+				phStress[2].setDisable(false);
+				phStress[3].setDisable(false);
+			}else if(old != null && old.equals("Physique")){
+				if(cdat.checkFor(4, (String)old) || cdat.checkFor(3, (String)old)){
+					return;
+				}
+				if(!(cdat.checkFor(2, (String)old)) && !(cdat.checkFor(3, (String)old))){
+					phStress[3].setDisable(true);
+					phStress[3].setSelected(false);
+				}
+				if(!(cdat.checkFor(0, (String)old)) && !(cdat.checkFor(1, (String)old))){
+					phStress[2].setDisable(true);
+					phStress[2].setSelected(false);
+				}
+			}if(nu != null && nu.equals("Will")){
+				meStress[2].setDisable(false);
+				meStress[3].setDisable(false);
+			}else if(old != null && old.equals("Will")){
+				if(cdat.checkFor(4, (String)old) || cdat.checkFor(3, (String)old)){
+					return;
+				}
+				if(!(cdat.checkFor(2, (String)old)) && !(cdat.checkFor(3, (String)old))){
+					meStress[3].setDisable(true);
+					meStress[3].setSelected(false);
+				}
+				if(!(cdat.checkFor(0, (String)old)) && !(cdat.checkFor(1, (String)old))){
+					meStress[2].setDisable(true);
+					meStress[2].setSelected(false);
+				}
+			}
+		});
+	}
+	
+	//TODO: implement consequences changes when phys or will are superb
+	private void setSuperbBehavior(ComboBox cb, int i, int j){
 		cb.getSelectionModel().selectedItemProperty().addListener((obs, old, nu)->{
 			cdat.setSkill(i, j, (String)nu);
 			if(nu != null && nu.equals("Physique")){
@@ -172,11 +210,6 @@ class SkillStress{
 				}
 			}
 		});
-	}
-	
-	//TODO: finish setSuperbBehavior()
-	private void setSuperbBehavior(ComboBox cb, int i, int j){
-		return;
 	}
 	
 	private VBox ratingSet(){
@@ -232,4 +265,6 @@ class SkillStress{
 		
 		return pStress;
 	}
+	
+	//TODO: make buildConsequences
 }
