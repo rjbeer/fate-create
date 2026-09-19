@@ -75,7 +75,7 @@ class SkillStress{
 		skillText.setStyle("-fx-font-size: 15");
 		skillText.setUnderline(true);
 		
-		skills.getChildren().addAll(buildSkills());
+		skills.getChildren().addAll(buildSkills(4), buildSkills(3), buildSkills(2), buildSkills(1), buildSkills(0));
 		rateAndSkill.getChildren().addAll(ratingSet(), skills);
 		skillContainer.getChildren().addAll(skillText, rateAndSkill);
 		
@@ -85,10 +85,10 @@ class SkillStress{
 	//TODO: after setting up setSuperbBehavior() make sure to properly think through and implement
 	//		the skills section. Perhaps it is a collection of VBoxes. As it stands the skills HBox
 	//		houses only one line of skills max.
-	private HBox buildSkills(){
+	private HBox buildSkills(int rate){
 		HBox skills = new HBox(10);
 		
-		skills.getChildren().addAll(makeSkill(3, 0), makeSkill(1, 0));
+		skills.getChildren().addAll(makeSkill(rate, 0), makeSkill(rate, 1), makeSkill(rate, 2), makeSkill(rate, 3), makeSkill(rate, 4));
 		
 		return skills;
 	}
@@ -176,7 +176,7 @@ class SkillStress{
 	
 	//TODO: finish setSuperbBehavior()
 	private void setSuperbBehavior(ComboBox cb, int i, int j){
-		
+		return;
 	}
 	
 	private VBox ratingSet(){
