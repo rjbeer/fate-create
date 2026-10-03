@@ -115,8 +115,6 @@ class CharacterData{
 		descriptions.set(i, description);
 	}
 	
-	
-	
 	public void removeDescription(int i){
 		descriptions.remove(i);
 	}
@@ -145,4 +143,13 @@ class CharacterData{
 	public String getSkill(int i, int j){
 		return skills[i][j];
 	}
+	
+	public void setConsequence(String consequence, int index){
+		consequences[index] = consequence;
+	}
+	
+	public String getConsequence(int index){
+		return consequences[index];
+	}
+	
 }

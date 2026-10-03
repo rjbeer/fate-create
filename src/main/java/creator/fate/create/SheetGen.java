@@ -14,6 +14,7 @@ class SheetGen{
 	private BorderPane root;
 	private Concept con;
 	private SkillStress ss;
+	private StuntExtra se;
 	//private CharacterData charDat = new CharacterData();
 	private TabPane sheetTabs = new TabPane();
 	
@@ -22,8 +23,9 @@ class SheetGen{
 		root = new BorderPane();
 		con = new Concept(charDat);
 		ss = new SkillStress(charDat);
+		se = new StuntExtra(charDat);
 		
-		sheetTabs.getTabs().addAll(con.buildConceptTab(), ss.buildSkillStress());
+		sheetTabs.getTabs().addAll(con.buildConceptTab(), ss.buildSkillStress(), se.buildStuntExtra());
 		sheetTabs.setSide(Side.LEFT);
 		
 		root.setCenter(sheetTabs);

@@ -41,11 +41,14 @@ class SkillStress{
 		return skillStress;
 	}
 	
+	//TODO: repeats itself with buildphysstress, buildmentalstress, and buildConsequences
+	//		they can simply be called on and built in vb.
 	private ScrollPane skillsAndStress(){
 		ScrollPane sp = new ScrollPane();
 		VBox vb = new VBox(10);
-		VBox physStress = new VBox();
-		VBox mentStress = new VBox();
+		VBox physStress = buildPhysStress();
+		VBox mentStress = buildMentalStress();
+		HBox consequences = buildConsequences();
 		Button test = new Button("Test");
 		
 		test.setOnAction(e -> {
@@ -55,12 +58,12 @@ class SkillStress{
 					System.out.println(cdat.getSkill(i, j));
 				}
 			}
+			for(int i = 0; i < 4; i++){
+				System.out.println("consequence " + i + "\n" + cdat.getConsequence(i));
+			}
 		});
 		
-		physStress.getChildren().add(buildPhysStress());
-		mentStress.getChildren().add(buildMentalStress());
-		
-		vb.getChildren().addAll(buildSkillList(physStress, mentStress), physStress, mentStress, test);
+		vb.getChildren().addAll(buildSkillList(physStress, mentStress), physStress, mentStress, consequences, test);
 		sp.setContent(vb);
 		
 		return sp;
@@ -187,26 +190,32 @@ class SkillStress{
 			if(nu != null && nu.equals("Physique")){
 				phStress[2].setDisable(false);
 				phStress[3].setDisable(false);
+				consequence[3].setDisable(false);
 			}else if(old != null && old.equals("Physique")){
 				if(!(cdat.checkFor(2, (String)old)) && !(cdat.checkFor(3, (String)old))){
 					phStress[3].setDisable(true);
 					phStress[3].setSelected(false);
+					consequence[3].setDisable(true);
 				}
 				if(!(cdat.checkFor(0, (String)old)) && !(cdat.checkFor(1, (String)old))){
 					phStress[2].setDisable(true);
 					phStress[2].setSelected(false);
+					consequence[3].setDisable(true);
 				}
 			}if(nu != null && nu.equals("Will")){
 				meStress[2].setDisable(false);
 				meStress[3].setDisable(false);
+				consequence[3].setDisable(false);
 			}else if(old != null && old.equals("Will")){
 				if(!(cdat.checkFor(2, (String)old)) && !(cdat.checkFor(3, (String)old))){
 					meStress[3].setDisable(true);
 					meStress[3].setSelected(false);
+					consequence[3].setDisable(true);
 				}
 				if(!(cdat.checkFor(0, (String)old)) && !(cdat.checkFor(1, (String)old))){
 					meStress[2].setDisable(true);
 					meStress[2].setSelected(false);
+					consequence[3].setDisable(true);
 				}
 			}
 		});
@@ -245,7 +254,7 @@ class SkillStress{
 		return mStress;
 	}
 	
-	public VBox buildPhysStress(){
+	private VBox buildPhysStress(){
 		VBox pStress = new VBox(5);
 		HBox pStressTicks = new HBox(10);
 		Text pText = new Text("Physical Stress");
@@ -267,4 +276,41 @@ class SkillStress{
 	}
 	
 	//TODO: make buildConsequences
+	private HBox buildConsequences(){
+		HBox cons = new HBox(15);
+		VBox regularCons = new VBox(5);
+		VBox extraCons = new VBox(5);
+		Text consText = new Text("Consequences");
+		
+		consText.setStyle("-fx-font-size: 15");
+		consText.setUnderline(true);
+		
+		regularCons.getChildren().addAll(consText, concequenceRow("2", "Mild", false, 0),
+											concequenceRow("4", "Moderate", false, 1),
+											concequenceRow("6", "Severe", false, 2));
+		extraCons.getChildren().addAll(new Text(""), concequenceRow("2", "Mild", true, 3));
+		
+		cons.getChildren().addAll(regularCons, extraCons);
+		
+		return cons;
+	}
+	
+	private HBox concequenceRow(String shift, String prompt, boolean disable, int index){
+		HBox con = new HBox(5);
+		Text t = new Text(shift);
+		
+		consequence[index].setPromptText(prompt);
+		consequence[index].setPrefRowCount(1);
+		consequence[index].setPrefColumnCount(20);
+		consequence[index].setDisable(disable);
+		
+		consequence[index].textProperty().addListener((obs, old, nu)->{
+			cdat.setConsequence(nu, index);
+		});
+		
+		con.getChildren().addAll(t, consequence[index]);
+		
+		return con;
+	}
+	
 }
