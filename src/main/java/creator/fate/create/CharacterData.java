@@ -10,6 +10,8 @@ class CharacterData{
 	private String refresh = "";
 	private String highConcept = "";
 	private String trouble = "";
+	private String stunts = "";
+	private String extras = "";
 	private ArrayList<String> aspects = new ArrayList<String>();
 	private ArrayList<String> descriptions = new ArrayList<String>();
 	private String[][] skills = new String[5][5];
@@ -150,6 +152,22 @@ class CharacterData{
 	
 	public String getConsequence(int index){
 		return consequences[index];
+	}
+	
+	public void setStunts(String stunts){
+		this.stunts = stunts;
+	}
+	
+	public String getStunts(){
+		return stunts;
+	}
+	
+	public void setExtras(String extras){
+		this.extras = extras;
+	}
+	
+	public String getExtras(){
+		return extras;
 	}
 	
 }
