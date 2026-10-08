@@ -12,7 +12,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.control.Button;
 
 public class FateCreate extends Application{
-	
+	MenuBuilder mb = new MenuBuilder();
 	SheetGen sg = new SheetGen();
 	CharacterData charDat = new CharacterData();
 
