@@ -7,6 +7,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.geometry.Side;
+import javafx.scene.control.MenuBar;
 
 
 class SheetGen{
@@ -15,6 +16,8 @@ class SheetGen{
 	private Concept con;
 	private SkillStress ss;
 	private StuntExtra se;
+	private MenuBuilder mb = new MenuBuilder();
+	private MenuBar menB = mb.getMenu();
 	//private CharacterData charDat = new CharacterData();
 	private TabPane sheetTabs = new TabPane();
 	
@@ -29,6 +32,7 @@ class SheetGen{
 		sheetTabs.setSide(Side.LEFT);
 		
 		root.setCenter(sheetTabs);
+		root.setTop(menB);
 		
 		charSheet = new Scene(root, Color.DARKGREY);
 		

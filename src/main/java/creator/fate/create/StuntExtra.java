@@ -77,10 +77,5 @@ class StuntExtra {
 		return extrasBox;
 	}
 	
-	/*
-	consequence[index].textProperty().addListener((obs, old, nu)->{
-			cdat.setConsequence(nu, index);
-		});
-	*/
 	
 }
